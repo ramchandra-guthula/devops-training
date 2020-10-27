@@ -1,0 +1,42 @@
+<html>
+<body>
+<?php 
+$servername = "devops-app.cirfjiv0tncx.ap-south-1.rds.amazonaws.com";
+$username = "admin"; 
+$password = "Admin123"; 
+$database = "devops"; 
+
+$mysqli = new mysqli($servername, $username, $password, $database); 
+$query = "SELECT * FROM devops";
+
+
+echo '<table border="0" cellspacing="2" cellpadding="2"> 
+      <tr> 
+          <td> <font face="Arial">Value1</font> </td> 
+          <td> <font face="Arial">Value2</font> </td> 
+          <td> <font face="Arial">Value3</font> </td> 
+          <td> <font face="Arial">Value4</font> </td> 
+          <td> <font face="Arial">Value5</font> </td> 
+      </tr>';
+
+if ($result = $mysqli->query($query)) {
+    while ($row = $result->fetch_assoc()) {
+        $id = $row["col1"];
+        $firstname = $row["col2"];
+        $lastname = $row["col3"];
+        $address = $row["col4"];
+        $city = $row["col5"]; 
+
+        echo '<tr> 
+                  <td>'.$id.'</td> 
+                  <td>'.$firstname.'</td> 
+                  <td>'.$lastname.'</td> 
+                  <td>'.$address.'</td> 
+                  <td>'.$city.'</td> 
+              </tr>';
+    }
+    $result->free();
+} 
+?>
+</body>
+</html>
